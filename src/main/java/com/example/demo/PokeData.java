@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import lombok.Data;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,43 +7,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="POKEDEX_TBL")
-//@Data
+@Table(name="PK_POKEDEX_MST")
 public class PokeData {
-	
+
 	@Id
-	@Column(name="POKE_ID")
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="POKEMON_ID")
+//  @GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int pokeId;
-	//private int poke_id1_0_;
+	private int pokemonId;
 	
 	/** 名前 */
-	@Column(name="POKE_NAME")
-    private String pokeName;
-	//private String poke_name2_0_;
+	@Column(name="POKEMON_JP_NAME")
+    private String pokemonJpName;
 	
     /** タイプ */
     @Column(name="TYPE_ID")
     private int typeId;
-    //private int type_id3_0_;
 
-	public int getPokeId() {
-		return pokeId;
+	public int getPokemonId() {
+		return pokemonId;
 	}
 
-	public void setPokeId(int pokeId) {
-		this.pokeId = pokeId;
+	public void setPokemonId(int pokemonId) {
+		this.pokemonId = pokemonId;
 	}
 
-	public String getPokeName() {
-		return pokeName;
+	public String getPokemonJpName() {
+		return pokemonJpName;
 	}
 
-	public void setPokeName(String pokeName) {
-		this.pokeName = pokeName;
+	public void setPokemonJpName(String pokemonJpName) {
+		this.pokemonJpName = pokemonJpName;
 	}
 
 	public int getTypeId() {

@@ -16,8 +16,8 @@
         </thead>
         <tbody>
         	<tr th:each="pokeData : ${pokeDataList}">
-            	<td th:text="${pokeData.pokeId}"></td>
-            	<td th:text="${pokeData.pokeName}"></td>
+            	<td th:text="${pokeData.pokemonId}"></td>
+            	<td th:text="${pokeData.pokemonJpName}"></td>
             	<td th:text="${pokeData.typeId}"></td>
             </tr>
         </tbody>
