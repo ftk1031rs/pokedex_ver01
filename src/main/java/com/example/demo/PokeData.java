@@ -11,20 +11,35 @@ import javax.persistence.Table;
 @Table(name="PK_POKEDEX_MST")
 public class PokeData {
 
+	/** ポケモンID */
 	@Id
 	@Column(name="POKEMON_ID")
 //  @GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int pokemonId;
 	
-	/** 名前 */
+	/** ポケモン日本語名 */
 	@Column(name="POKEMON_JP_NAME")
     private String pokemonJpName;
+	
+	/** ポケモン英語名 */
+	@Column(name="POKEMON_EN_NAME")
+    private String pokemonEnName;
 	
     /** タイプ */
     @Column(name="TYPE_ID")
     private int typeId;
 
+    /** 高さ */
+    @Column(name="HEIGHT")
+    private double height;
+    
+    /** 重さ */
+    @Column(name="WEIGHT")
+    private double weight;
+
+    /** Getter Setter */
+    
 	public int getPokemonId() {
 		return pokemonId;
 	}
@@ -41,12 +56,36 @@ public class PokeData {
 		this.pokemonJpName = pokemonJpName;
 	}
 
+	public String getPokemonEnName() {
+		return pokemonEnName;
+	}
+
+	public void setPokemonEnName(String pokemonEnName) {
+		this.pokemonEnName = pokemonEnName;
+	}
+
 	public int getTypeId() {
 		return typeId;
 	}
 
 	public void setTypeId(int typeId) {
 		this.typeId = typeId;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
 	}
     
 }

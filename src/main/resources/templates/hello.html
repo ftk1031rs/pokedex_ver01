@@ -10,15 +10,21 @@
 		<thead>
     	    <tr>
             	<th>ID</th>
-            	<th>name</th>
-            	<th>typeId</th>
+            	<th>日本語名</th>
+            	<th>英語名</th>
+            	<th>タイプ</th>
+            	<th>高さ</th>
+            	<th>重さ</th>
 			</tr>
         </thead>
         <tbody>
         	<tr th:each="pokeData : ${pokeDataList}">
             	<td th:text="${pokeData.pokemonId}"></td>
             	<td th:text="${pokeData.pokemonJpName}"></td>
+            	<td th:text="${pokeData.pokemonEnName}"></td>
             	<td th:text="${pokeData.typeId}"></td>
+            	<td th:text="${pokeData.height}"></td>
+            	<td th:text="${pokeData.weight}"></td>
             </tr>
         </tbody>
     </table>
