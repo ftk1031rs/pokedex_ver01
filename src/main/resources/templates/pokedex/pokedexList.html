@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <title>ポケモン図鑑</title>
+    <!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<!-- Javascript -->
+	<script type="text/javascript" th:src="@{/js/pokedexList.js}"></script>
+  </head>
+  <body>
+    <h1>ポケモン情報検索</h1>
+	<form class="form-horizontal" method="post" th:action="@{/pokedexlist/search}" th:object="${pokedexSearchRequest}">
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="examinee">ポケモンID</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="pokemonId" id="pokemonId" th:value="${pokemonId}">
+			</div>
+			<label class="col-sm-2 control-label" for="examinee">ポケモン日本語名</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="pokemonJpName" id="pokemonJpName" th:value="${pokemonJpName}">
+			</div>
+			<label class="col-sm-2 control-label" for="examinee">ポケモン英語名</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="pokemonEnName" id="pokemonEnName" th:value="${pokemonEnName}">
+			</div>
+			<label class="col-sm-2 control-label" for="examinee">タイプ</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="typeId" id="typeId" th:value="${typeId}">
+			</div>
+			<label class="col-sm-2 control-label" for="examinee">高さ</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="height" id="height" th:value="${height}">
+			</div>
+			<label class="col-sm-2 control-label" for="examinee">重さ</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="weight" id="weight" th:value="${weight}">
+			</div>
+		</div>
+        <div class="form-group">
+           	<div class="col-sm-2"></div>
+           	<div class="col-sm-10" align="right">
+				<button type="button" class="btn btn-primary" onclick="buttonClick('/pokedexlist/search')">
+					検索
+				</button>
+			</div>
+        </div>
+	</form>
+
+    <table border="1" cellpadding="5">
+		<thead>
+    	    <tr>
+            	<th>ID</th>
+            	<th>日本語名</th>
+            	<th>英語名</th>
+            	<th>タイプ</th>
+            	<th>高さ</th>
+            	<th>重さ</th>
+			</tr>
+        </thead>
+        <tbody>
+        	<tr th:each="Pk_pokedex_mst : ${pokemonDataList}">
+            	<td th:text="${Pk_pokedex_mst.pokemonId}"></td>
+            	<td th:text="${Pk_pokedex_mst.pokemonJpName}"></td>
+            	<td th:text="${Pk_pokedex_mst.pokemonEnName}"></td>
+            	<td th:text="${Pk_pokedex_mst.typeId}"></td>
+            	<td th:text="${Pk_pokedex_mst.height}"></td>
+            	<td th:text="${Pk_pokedex_mst.weight}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+  </body>
+</html>

@@ -18,13 +18,13 @@
 			</tr>
         </thead>
         <tbody>
-        	<tr th:each="pokeData : ${pokeDataList}">
-            	<td th:text="${pokeData.pokemonId}"></td>
-            	<td th:text="${pokeData.pokemonJpName}"></td>
-            	<td th:text="${pokeData.pokemonEnName}"></td>
-            	<td th:text="${pokeData.typeId}"></td>
-            	<td th:text="${pokeData.height}"></td>
-            	<td th:text="${pokeData.weight}"></td>
+        	<tr th:each="Pk_pokedex_mst : ${pokemonDataList}">
+            	<td th:text="${Pk_pokedex_mst.pokemonId}"></td>
+            	<td th:text="${Pk_pokedex_mst.pokemonJpName}"></td>
+            	<td th:text="${Pk_pokedex_mst.pokemonEnName}"></td>
+            	<td th:text="${Pk_pokedex_mst.typeId}"></td>
+            	<td th:text="${Pk_pokedex_mst.height}"></td>
+            	<td th:text="${Pk_pokedex_mst.weight}"></td>
             </tr>
         </tbody>
     </table>

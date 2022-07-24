@@ -7,12 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.demo.entity.PokeData;
+import com.example.demo.entity.Pk_pokedex_mst;
 import com.example.demo.repository.PokeDataRepository;
+import com.example.demo.service.PokedexService;
+
+/**
+ * ポケモン図鑑 Controller
+ */
 
 @Controller
 public class MainController {
-
+	
     /**
      * POKEDEX_TBLへアクセスするリポジトリ
      */
@@ -23,8 +28,12 @@ public class MainController {
 	@GetMapping("/test1")
 	public String write1(Model model) {
 		model.addAttribute("moji", "hello world!");
-		List<PokeData> pokeDataList = repository.findAll();
-		model.addAttribute("pokeDataList",pokeDataList);
+		
+		
+		List<Pk_pokedex_mst> pokemonDataList = repository.findAll();
+		//model.addAttribute("pokemonDataList",pokemonDataList);
+		
+		model.addAttribute("pokemonDataList",pokemonDataList);
 		return "hello";
 	}
 }
