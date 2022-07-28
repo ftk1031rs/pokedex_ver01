@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.dto.PokedexSearchRequest;
 import com.example.demo.entity.Pk_pokedex_mst;
+import com.example.demo.model.PokedexListModel;
 import com.example.demo.repository.PokeDataRepository;
 import com.example.demo.service.PokedexService;
 
@@ -21,15 +22,16 @@ import com.example.demo.service.PokedexService;
 @Controller
 @RequestMapping("pokedexlist")
 public class PokedexListController {
+
+	private String pokedexListpath = "/pokedex/pokedexList";
+	
 	/**
 	 * ポケモン図鑑検索 Service
 	 */
-	//@Autowired
-	//PokedexService userService;
+	@Autowired
+	PokedexService pokedexService;
 	
-	// 後で消す
-    @Autowired
-    private PokeDataRepository repository;
+
 
 
 	  /**
@@ -40,7 +42,7 @@ public class PokedexListController {
 	  @GetMapping("/init")
 	  public String initPokedex(Model model) {
 		model.addAttribute("pokedexSearchRequest", new PokedexSearchRequest());
-	    return "/pokedex/pokedexList";
+	    return pokedexListpath;
 	  }
 
 	  
@@ -52,14 +54,9 @@ public class PokedexListController {
 	   */
 	  @RequestMapping(value = "/search", method = RequestMethod.POST)
 	  public String search(@ModelAttribute PokedexSearchRequest pokedexSearchRequest, Model model) {
-	    
-	    //これは後で消す
-	    List<Pk_pokedex_mst> pokemonDataList = repository.findAll();
-	    model.addAttribute("pokemonDataList",pokemonDataList);
-	    	    
-//		User user = userService.search(userSearchRequest);
-//	    model.addAttribute("userinfo", user);
-	    return "/pokedex/pokedexList";
+		model.addAttribute("pokedexSearchRequest", pokedexSearchRequest);
+	    model.addAttribute("pokemonDataList",pokedexService.search(pokedexSearchRequest));
+	    return pokedexListpath;
 	  }
 
 

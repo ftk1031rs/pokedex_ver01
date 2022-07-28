@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="PK_POKEDEX_MST")
-public class Pk_pokedex_mst {
+public class Pk_pokedex_mst extends WhoColumns{
 
 	/** ポケモンID */
 	@Id
@@ -17,6 +17,10 @@ public class Pk_pokedex_mst {
 //  @GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int pokemonId;
+	
+	/** ポケモンID枝番 */
+	@Column(name="POKEMON_ID_BRANCH")
+    private int pokemonIdBranch;
 	
 	/** ポケモン日本語名 */
 	@Column(name="POKEMON_JP_NAME")
@@ -26,7 +30,7 @@ public class Pk_pokedex_mst {
 	@Column(name="POKEMON_EN_NAME")
     private String pokemonEnName;
 	
-    /** タイプ */
+    /** タイプID */
     @Column(name="TYPE_ID")
     private int typeId;
 
@@ -39,13 +43,20 @@ public class Pk_pokedex_mst {
     private double weight;
 
     /** Getter Setter */
-    
 	public int getPokemonId() {
 		return pokemonId;
 	}
 
 	public void setPokemonId(int pokemonId) {
 		this.pokemonId = pokemonId;
+	}
+
+	public int getPokemonIdBranch() {
+		return pokemonIdBranch;
+	}
+
+	public void setPokemonIdBranch(int pokemonIdBranch) {
+		this.pokemonIdBranch = pokemonIdBranch;
 	}
 
 	public String getPokemonJpName() {
@@ -87,5 +98,5 @@ public class Pk_pokedex_mst {
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-    
+
 }

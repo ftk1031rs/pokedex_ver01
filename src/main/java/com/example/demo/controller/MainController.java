@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.entity.Pk_pokedex_mst;
 import com.example.demo.repository.PokeDataRepository;
-import com.example.demo.service.PokedexService;
+import com.example.demo.service.PokedexServiceImpl;
 
 /**
  * ポケモン図鑑 Controller

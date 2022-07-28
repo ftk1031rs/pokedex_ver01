@@ -44,6 +44,13 @@
         	<artifactId>mybatis-spring-boot-starter</artifactId>
         	<version>2.1.0</version>
     	</dependency>
+    	<!-- 
+		<dependency>
+			<groupId>org.seasar.doma.boot</groupId>
+			<artifactId>doma-spring-boot-starter</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+    	 -->
 <!-- ↑追加↑ -->
 
 		<dependency>
@@ -67,12 +74,47 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+<!-- 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+			    <groupId>org.bsc.maven</groupId>
+			    <artifactId>maven-processor-plugin</artifactId>
+			    <version>2.0.5</version>
+			    <executions>
+			        <execution>
+			            <id>process</id>
+			            <goals>
+			                <goal>process</goal>
+			            </goals>
+			            <phase>process-resources</phase>
+			            <configuration>
+			                <outputDirectory>${project.build.directory}/apt_generated</outputDirectory>
+			                <failOnError>false</failOnError>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+		</plugins>
+	</build>
+ -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
