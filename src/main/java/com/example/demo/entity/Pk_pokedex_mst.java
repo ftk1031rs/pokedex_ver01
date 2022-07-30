@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="PK_POKEDEX_MST")
+//public class Pk_pokedex_mst{
 public class Pk_pokedex_mst extends WhoColumns{
 
 	/** ポケモンID */
