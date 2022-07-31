@@ -12,7 +12,7 @@ import com.example.demo.repository.PokeDataRepository;
 import com.example.demo.service.PokedexServiceImpl;
 
 /**
- * ポケモン図鑑 Controller
+ * ポケモン図鑑 Controller（DB接続テスト用）
  */
 
 @Controller
@@ -28,11 +28,7 @@ public class MainController {
 	@GetMapping("/test1")
 	public String write1(Model model) {
 		model.addAttribute("moji", "hello world!");
-		
-		
 		List<Pk_pokedex_mst> pokemonDataList = repository.findAll();
-		//model.addAttribute("pokemonDataList",pokemonDataList);
-		
 		model.addAttribute("pokemonDataList",pokemonDataList);
 		return "hello";
 	}

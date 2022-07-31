@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.PokedexMapper">
+	<resultMap id="pokedexMap"
+		type="com.example.demo.model.PokedexListModel">
+		<result column="POKEMON_ID" jdbcType="INTEGER" property="pokemonId" />
+		<result column="POKEMON_ID_BRANCH" jdbcType="INTEGER" property="pokemonIdBranch" />
+		<result column="POKEMON_JP_NAME" jdbcType="VARCHAR" property="pokemonJpName" />
+		<result column="POKEMON_EN_NAME" jdbcType="VARCHAR" property="pokemonEnName" />
+		<result column="TYPE_ID" jdbcType="INTEGER" property="typeId" />
+		<result column="TYPE_NAME" jdbcType="VARCHAR" property="typeName" />
+		<result column="HEIGHT" jdbcType="INTEGER" property="height" />
+		<result column="WEIGHT" jdbcType="INTEGER" property="weight" />
+		<result column="CREATE_DATE" jdbcType="DATE" property="createDate" />
+		<result column="CREATER" jdbcType="VARCHAR" property="creater" />
+		<result column="CREATE_PROGRAM" jdbcType="VARCHAR" property="createProgram" />	
+		<result column="UPDATE_DATE" jdbcType="DATE" property="updateDate" />
+		<result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+		<result column="UPDATE_PROGRAM" jdbcType="VARCHAR" property="updateProgram" />
+		<result column="UPDATE_COUNT" jdbcType="INTEGER" property="updateCount" />
+		<result column="DELETE_FLAG" jdbcType="INTEGER" property="deleteFlag" />
+	</resultMap>
+    <!--
+	<select id="selectAll" resultMap="pokedexMap">
+		SELECT pkdex.POKEMON_ID
+    		 , pkdex.POKEMON_ID_BRANCH
+    		 , pkdex.POKEMON_JP_NAME
+    		 , pkdex.POKEMON_EN_NAME
+    		 , pkdex.TYPE_ID
+    		 , typemst.TYPE_NAME
+   			 , pkdex.HEIGHT
+		     , pkdex.WEIGHT
+		     , pkdex.CREATE_DATE
+		     , pkdex.CREATER
+		     , pkdex.CREATE_PROGRAM
+		     , pkdex.UPDATE_DATE
+		     , pkdex.UPDATER
+		     , pkdex.UPDATE_PROGRAM
+		     , pkdex.UPDATE_COUNT
+		     , pkdex.DELETE_FLAG
+		  FROM PK_POKEDEX_MST pkdex
+		  JOIN PK_TYPE_MST typemst
+		    ON pkdex.TYPE_ID = typemst.TYPE_ID
+		 ORDER BY pkdex.POKEMON_ID
+	</select>
+    -->
+    <select id="selectBySearchConditions" resultMap="pokedexMap">
+		SELECT pkdex.POKEMON_ID
+    		 , pkdex.POKEMON_ID_BRANCH
+    		 , pkdex.POKEMON_JP_NAME
+    		 , pkdex.POKEMON_EN_NAME
+    		 , pkdex.TYPE_ID
+    		 , typemst.TYPE_NAME
+   			 , pkdex.HEIGHT
+		     , pkdex.WEIGHT
+		     , pkdex.CREATE_DATE
+		     , pkdex.CREATER
+		     , pkdex.CREATE_PROGRAM
+		     , pkdex.UPDATE_DATE
+		     , pkdex.UPDATER
+		     , pkdex.UPDATE_PROGRAM
+		     , pkdex.UPDATE_COUNT
+		     , pkdex.DELETE_FLAG
+		  FROM PK_POKEDEX_MST pkdex
+		  JOIN PK_TYPE_MST typemst
+		    ON pkdex.TYPE_ID = typemst.TYPE_ID
+         WHERE pkdex.POKEMON_ID = #{pokemonId}
+		 ORDER BY pkdex.POKEMON_ID
+	</select>
+</mapper>

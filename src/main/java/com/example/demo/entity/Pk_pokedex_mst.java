@@ -9,13 +9,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="PK_POKEDEX_MST")
-//public class Pk_pokedex_mst{
 public class Pk_pokedex_mst extends WhoColumns{
 
 	/** ポケモンID */
 	@Id
 	@Column(name="POKEMON_ID")
-//  @GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int pokemonId;
 	
