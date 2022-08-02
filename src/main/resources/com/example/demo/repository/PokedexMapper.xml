@@ -64,7 +64,13 @@
 		  FROM PK_POKEDEX_MST pkdex
 		  JOIN PK_TYPE_MST typemst
 		    ON pkdex.TYPE_ID = typemst.TYPE_ID
-         WHERE pkdex.POKEMON_ID = #{pokemonId}
+		 WHERE pkdex.DELETE_FLAG = 0
+        <if test="pokemonJpName != ''">
+           AND pkdex.POKEMON_JP_NAME LIKE '%' || #{pokemonJpName} || '%'
+        </if>
+        <if test="pokemonEnName != ''">
+           AND pkdex.POKEMON_EN_NAME LIKE '%' || #{pokemonEnName} || '%'
+        </if>
 		 ORDER BY pkdex.POKEMON_ID
 	</select>
 </mapper>

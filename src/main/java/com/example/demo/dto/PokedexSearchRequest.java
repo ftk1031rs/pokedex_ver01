@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * ポケモン図鑑 検索用リクエストデータ
@@ -12,8 +13,11 @@ public class PokedexSearchRequest implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/** ポケモンID */
-	private int pokemonId;
+	/** ポケモンID_FROM */
+	private Integer pokemonId_from;
+	
+	/** ポケモンID_TO */
+	private Integer pokemonId_to;
 
 	/** ポケモン日本語名 */
     private String pokemonJpName;
@@ -22,20 +26,28 @@ public class PokedexSearchRequest implements Serializable {
     private String pokemonEnName;
     
     /** タイプ */
-    private int typeId;
+    private Integer typeId;
 
     /** 高さ */
-    private double height;
+    private BigDecimal height;
     
     /** 重さ */
-    private double weight;
+    private BigDecimal weight;
 
-	public int getPokemonId() {
-		return pokemonId;
+	public Integer getPokemonId_from() {
+		return pokemonId_from;
 	}
 
-	public void setPokemonId(int pokemonId) {
-		this.pokemonId = pokemonId;
+	public void setPokemonId_from(Integer pokemonId_from) {
+		this.pokemonId_from = pokemonId_from;
+	}
+
+	public Integer getPokemonId_to() {
+		return pokemonId_to;
+	}
+
+	public void setPokemonId_to(Integer pokemonId_to) {
+		this.pokemonId_to = pokemonId_to;
 	}
 
 	public String getPokemonJpName() {
@@ -54,27 +66,32 @@ public class PokedexSearchRequest implements Serializable {
 		this.pokemonEnName = pokemonEnName;
 	}
 
-	public int getTypeId() {
+	public Integer getTypeId() {
 		return typeId;
 	}
 
-	public void setTypeId(int typeId) {
+	public void setTypeId(Integer typeId) {
 		this.typeId = typeId;
 	}
 
-	public double getHeight() {
+	public BigDecimal getHeight() {
 		return height;
 	}
 
-	public void setHeight(double height) {
+	public void setHeight(BigDecimal height) {
 		this.height = height;
 	}
 
-	public double getWeight() {
+	public BigDecimal getWeight() {
 		return weight;
 	}
 
-	public void setWeight(double weight) {
+	public void setWeight(BigDecimal weight) {
 		this.weight = weight;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }
