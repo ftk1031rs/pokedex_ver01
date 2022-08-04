@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.CommonMapper">
+	<resultMap id="typeMap"
+		type="com.example.demo.model.PokedexListModel">
+		<result column="TYPE_ID" jdbcType="INTEGER" property="typeId" />
+		<result column="TYPE_NAME" jdbcType="VARCHAR" property="typeName" />
+	</resultMap>
+    <select id="selectTypeList" resultMap="typeMap">
+		SELECT TYPE_ID
+    		 , TYPE_NAME
+		  FROM PK_TYPE_MST
+		 WHERE DELETE_FLAG = 0
+		 ORDER BY TYPE_ID
+	</select>
+</mapper>

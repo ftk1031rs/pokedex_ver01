@@ -20,30 +20,6 @@
 		<result column="UPDATE_COUNT" jdbcType="INTEGER" property="updateCount" />
 		<result column="DELETE_FLAG" jdbcType="INTEGER" property="deleteFlag" />
 	</resultMap>
-    <!--
-	<select id="selectAll" resultMap="pokedexMap">
-		SELECT pkdex.POKEMON_ID
-    		 , pkdex.POKEMON_ID_BRANCH
-    		 , pkdex.POKEMON_JP_NAME
-    		 , pkdex.POKEMON_EN_NAME
-    		 , pkdex.TYPE_ID
-    		 , typemst.TYPE_NAME
-   			 , pkdex.HEIGHT
-		     , pkdex.WEIGHT
-		     , pkdex.CREATE_DATE
-		     , pkdex.CREATER
-		     , pkdex.CREATE_PROGRAM
-		     , pkdex.UPDATE_DATE
-		     , pkdex.UPDATER
-		     , pkdex.UPDATE_PROGRAM
-		     , pkdex.UPDATE_COUNT
-		     , pkdex.DELETE_FLAG
-		  FROM PK_POKEDEX_MST pkdex
-		  JOIN PK_TYPE_MST typemst
-		    ON pkdex.TYPE_ID = typemst.TYPE_ID
-		 ORDER BY pkdex.POKEMON_ID
-	</select>
-    -->
     <select id="selectBySearchConditions" resultMap="pokedexMap">
 		SELECT pkdex.POKEMON_ID
     		 , pkdex.POKEMON_ID_BRANCH

@@ -7,18 +7,19 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.PokedexSearchRequest;
 import com.example.demo.entity.Pk_pokedex_mst;
 import com.example.demo.model.PokedexListModel;
+import com.example.demo.model.TypeModel;
 
 /**
- * ポケモン図鑑 Service
+ * 共通 Service
  */
-public interface PokedexService {
+public interface CommonService {
 
 	/**
 	 * ポケモン図鑑データ検索
 	 * 
-	 * @param pokedexSearchRequest PokedexSearchRequest
-	 * @return ポケモン図鑑リスト
+	 * @param 
+	 * @return タイプリスト
 	 */
-	List<PokedexListModel> search(PokedexSearchRequest pokedexSearchRequest);
+	List<TypeModel> getTypeList();
 
 }
