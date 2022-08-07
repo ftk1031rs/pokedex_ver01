@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.demo.dto.PokedexSearchRequest;
-import com.example.demo.model.TypeModel;
+import com.example.demo.dto.PokedexSearchForm;
+import com.example.demo.entity.Pk_type_mst;
 import com.example.demo.service.CommonService;
 import com.example.demo.service.PokedexService;
 
@@ -43,29 +43,44 @@ public class PokedexListController {
 	 * @return ポケモン図鑑検索画面
 	 */
 	@GetMapping("/init")
-	public String initPokedex(Model model) {
-		model.addAttribute("pokedexSearchRequest", new PokedexSearchRequest());
-		//PokedexSearchRequest pokedexSearchRequest = new PokedexSearchRequest();
+	public String initPokedex(Model model) {	
+		// 検索フォームのセット
+		PokedexSearchForm pokedexSearchForm = new PokedexSearchForm();
         
-		List<TypeModel> typeList = commonService.getTypeList();
-        model.addAttribute("typeList", typeList);
-        
-		//model.addAttribute("pokedexSearchRequest", pokedexSearchRequest);
+		// タイプのリストボックスの値セット
+		List<Pk_type_mst> typeList = commonService.getTypeList();
+		pokedexSearchForm.setTypeList(typeList);
+		
+		// 検索フォームのマッピング
+		model.addAttribute("pokedexSearchForm", pokedexSearchForm);
+
+        // ポケモン図鑑検索画面の初期表示
 		return pokedexListpath;
 	}
 
 	/**
 	 * ポケモン図鑑の検索
 	 * 
-	 * @param PokedexSearchRequest リクエストデータ
+	 * @param PokedexSearchForm リクエストデータ
 	 * @param model                Model
 	 * @return ポケモン図鑑検索画面
 	 */
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String search(@ModelAttribute PokedexSearchRequest pokedexSearchRequest, Model model) {
-		model.addAttribute("pokedexSearchRequest", pokedexSearchRequest);
-		model.addAttribute("pokemonDataList", pokedexService.search(pokedexSearchRequest));
+	public String search(@ModelAttribute PokedexSearchForm pokedexSearchForm, Model model) {
+
+		// タイプのリストボックスの値セット
+		List<Pk_type_mst> typeList = commonService.getTypeList();
+		pokedexSearchForm.setTypeList(typeList);
+
+		// 入力済みの検索フォームのマッピング
+		model.addAttribute("pokedexSearchForm", pokedexSearchForm);
+
+		// 検索フォームに基づき検索処理を実行し、一覧にデータをセット
+		model.addAttribute("pokemonDataList", pokedexService.search(pokedexSearchForm));
+		
+		// ポケモン図鑑検索画面の初期表示
 		return pokedexListpath;
+		// return initPokedex(model);
 	}
 
 }

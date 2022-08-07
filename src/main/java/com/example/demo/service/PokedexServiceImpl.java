@@ -3,7 +3,8 @@ package com.example.demo.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.demo.dto.PokedexSearchRequest;
+
+import com.example.demo.dto.PokedexSearchForm;
 import com.example.demo.model.PokedexListModel;
 import com.example.demo.repository.PokedexMapper;
 
@@ -26,10 +27,10 @@ public class PokedexServiceImpl implements PokedexService{
 	 * @return ポケモン図鑑リスト
 	 */
 	@Override
-	public List<PokedexListModel> search(PokedexSearchRequest pokedexSearchRequest) {
+	public List<PokedexListModel> search(PokedexSearchForm pokedexSearchForm) {
 	
 		//ポケモン図鑑データ抽出（検索条件により）
-		List<PokedexListModel> pokedexList = pokedexMapper.selectBySearchConditions(pokedexSearchRequest);
+		List<PokedexListModel> pokedexList = pokedexMapper.selectBySearchConditions(pokedexSearchForm);
 		return pokedexList;
 	}
 	

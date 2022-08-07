@@ -4,10 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.demo.dto.PokedexSearchRequest;
-import com.example.demo.entity.Pk_pokedex_mst;
-import com.example.demo.model.PokedexListModel;
-import com.example.demo.model.TypeModel;
+import com.example.demo.entity.Pk_type_mst;
 
 /**
  * 共通 Mapper
@@ -20,6 +17,6 @@ public interface CommonMapper {
      * @param 
      * @return タイプリスト
      */
-	List<TypeModel> selectTypeList();
+	List<Pk_type_mst> selectTypeList();
 
 }

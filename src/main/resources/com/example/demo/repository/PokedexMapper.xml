@@ -47,6 +47,9 @@
         <if test="pokemonEnName != ''">
            AND pkdex.POKEMON_EN_NAME LIKE '%' || #{pokemonEnName} || '%'
         </if>
+        <if test="typeId != ''">
+           AND pkdex.TYPE_ID = #{typeId}
+        </if>
 		 ORDER BY pkdex.POKEMON_ID
 	</select>
 </mapper>

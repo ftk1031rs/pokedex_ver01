@@ -2,12 +2,15 @@ package com.example.demo.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
+
+import com.example.demo.entity.Pk_type_mst;
 
 /**
  * ポケモン図鑑 検索用リクエストデータ
  */
 
-public class PokedexSearchRequest implements Serializable {
+public class PokedexSearchForm implements Serializable {
 	/**
 	 * 
 	 */
@@ -27,6 +30,9 @@ public class PokedexSearchRequest implements Serializable {
     
     /** タイプ */
     private Integer typeId;
+    
+    /** タイプリスト */
+    private List<Pk_type_mst> typeList;
 
     /** 高さ */
     private BigDecimal height;
@@ -34,6 +40,7 @@ public class PokedexSearchRequest implements Serializable {
     /** 重さ */
     private BigDecimal weight;
 
+    
 	public Integer getPokemonId_from() {
 		return pokemonId_from;
 	}
@@ -72,6 +79,14 @@ public class PokedexSearchRequest implements Serializable {
 
 	public void setTypeId(Integer typeId) {
 		this.typeId = typeId;
+	}
+
+	public List<Pk_type_mst> getTypeList() {
+		return typeList;
+	}
+
+	public void setTypeList(List<Pk_type_mst> typeList) {
+		this.typeList = typeList;
 	}
 
 	public BigDecimal getHeight() {
