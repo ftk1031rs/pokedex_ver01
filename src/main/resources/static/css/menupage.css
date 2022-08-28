@@ -1,0 +1,23 @@
+
+/**  ＢＯＤＹ部  **/
+body {
+  font-family: "Avenir Next", "Hiragino Kaku Gothic ProN W3", sans-serif;
+}
+
+/**  ＭＡＩＮ部分の定義  **/
+.main{
+  padding: 100px 80px;
+}
+
+.copy-container h1{
+    font-size: 140px;
+}
+
+.copy-container h2{
+    font-size: 60px;
+    margin-bottom:100px;
+}
+
+.copy-container span{
+  color: #ff4a4a;
+}

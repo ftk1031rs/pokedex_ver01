@@ -11,7 +11,7 @@
 	<!-- Javascript -->
 	<script type="text/javascript" th:src="@{/js/pokedexList.js}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	
 </head>
 
 <body>
@@ -30,7 +30,7 @@
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">ポケモン図鑑</a></li>
+					<li><a href="javascript:buttonClick('/pokedexRegistration/init')">ポケモン図鑑新規登録</a></li>
 					<li><a href="#">ポケモン交換</a></li>
 					<li><a href="#">ポケモン生息地検索</a></li>
 				</ul>
@@ -89,6 +89,8 @@
 					<th scope="col">タイプ</th>
 					<th scope="col">高さ</th>
 					<th scope="col">重さ</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -99,6 +101,35 @@
 					<td th:text="${pokemonData.typeName}"></td>
 					<td th:text="${pokemonData.height}"></td>
 					<td th:text="${pokemonData.weight}"></td>
+					<td><a class="btn btn-primary" th:href="@{/pokedexdetail/{pokemonId}(pokemonId=${pokemonData.pokemonId})}">詳細</a></td>
+					<td>
+						<button type="button" class="btn btn-danger mb-12" data-toggle="modal" data-target="#deleteModal"
+							data-backdrop="false" 　th:data-bs-target="'#pokemonId' + ${pokemonData.pokemonId}">削除</button>
+						<!-- ボタン・リンククリック後に表示される画面の内容 -->
+						<form name="pokemonData" class="form-horizontal" method="post" th:action="@{/pokedexlist/delete}"
+							th:object="${pokemonData}">
+							<div class="modal fade" id="deleteModal" th:id="'pokemonId' + ${pokemonData.pokemonId}" tabindex="-1"
+								role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4>
+												<div class="modal-title" id="myModalLabel">ログイン情報入力</div>
+											</h4>
+										</div>
+										<div class="form-group">
+											<div class="modal-body">削除してもよろしいですか？</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-danger"
+													onclick="buttonClick('/pokedexlist/delete')">削除</button>
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</td>
 				</tr>
 			</tbody>
 		</table>

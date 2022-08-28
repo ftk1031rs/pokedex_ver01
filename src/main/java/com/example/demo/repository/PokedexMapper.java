@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.demo.dto.PokedexDetailForm;
 import com.example.demo.dto.PokedexSearchForm;
 import com.example.demo.model.PokedexListModel;
 
@@ -22,4 +23,11 @@ public interface PokedexMapper {
      */
 	List<PokedexListModel> selectBySearchConditions(PokedexSearchForm pokedexSearchForm);
 
+    /**
+     * ポケモン図鑑検索
+     * @param pokedexSearchRequest 検索用リクエストデータ
+     * @return ポケモン図鑑リスト
+     */
+	List<PokedexDetailForm> selectById(Integer id);
+	
 }

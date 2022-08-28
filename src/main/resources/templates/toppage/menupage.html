@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>ポケモン図鑑</title>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<!-- CSS -->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/menupage.css}">
+	<!-- Javascript -->
+	<script type="text/javascript" th:src="@{/js/common.js}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #003ffc;">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Pokedex Search</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="javascript:buttonClick('/pokedexRegistration/init')">ポケモン図鑑新規登録</a></li>
+					<li><a href="#">ポケモン交換</a></li>
+					<li><a href="#">ポケモン生息地検索</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="main">
+		<div class="copy-container">
+			<h1>HELLO POKEMON<span>.</span></h1>
+			<h2>ポケモンの世界へようこそ</h2>
+		</div>
+		<form name="menuInfo" class="form-horizontal" method="post" th:action="@{/pokedexlist/init}">
+			<div class="contents">
+				<h3 class="section-title">コンテンツ</h3>
+	
+				<!--**  【画像001】ポケモン図鑑  **-->
+				<div class="contents-item">
+					<a href="#" onclick="screenTransition('/pokedexlist/init')">
+						<img src="pokedex.PNG">
+						<p>ポケモン図鑑</p>
+					</a>
+				</div>
+	
+				<!--**  【画像002】ポケモンバトル  **-->
+				<div class="contents-item">
+					<a onClick="alert('バトルしようぜ！');">
+						<img src="battle.PNG">
+						<p>ポケモンバトル</p>
+					</a>
+				</div>
+	
+				<!--**  【画像003】ポケモン交換  **-->
+				<div class="contents-item">
+					<img src="trade.PNG">
+					<p>ポケモン交換</p>
+				</div>
+			</div>
+		</form>
+
+	
+	
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>ポケモン図鑑</title>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<!-- CSS -->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/pokedexList.css}">
+	<!-- Javascript -->
+	<script type="text/javascript" th:src="@{/js/toppage.js}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<h1>ポケモンの世界へようこそ</h1>
+	
+	<h2>電話番号またはメールアドレスで登録</h2>
+	<button type="button" class="btn btn-primary" onclick="buttonClick('/pokedexlist/init')">ログイン</button>
+	
+	<h2>アカウントをお持ちの方はこちら</h2>
+	<button type="button" class="btn btn-primary mb-12" data-toggle="modal" data-target="#loginModal" data-backdrop="false">ログイン</button>
+	<!-- ボタン・リンククリック後に表示される画面の内容 -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4><div class="modal-title" id="myModalLabel">ログイン情報入力</div></h4>
+                </div>
+				<form name="loginInfo" class="form-horizontal" method="post" th:action="@{/pokedexlist/init}" th:object="${loginInfo}">
+					<div class="form-group">
+						<div class="modal-body">
+							<div class="form-group form-inline input-group-sm">
+								<label for="userId" class="col-md-2 control-label">ユーザーID</label>
+								<input type="text" class="form-control col-md-2" id="userId" name="userId" th:value="${userId}">
+							</div>
+							<div class="form-group form-inline input-group-sm">
+								<label for="password" class="col-md-2 control-label">パスワード</label>
+								<input type="password" class="form-control col-md-4" name="password" id="password" th:value="${password}">
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" onclick="login('/pokedexmenu/init')">ログイン</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+						</div>
+					</div>
+				</form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

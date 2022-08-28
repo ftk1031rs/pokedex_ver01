@@ -7,10 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.PokedexSearchForm;
 import com.example.demo.entity.Pk_type_mst;
@@ -21,10 +19,10 @@ import com.example.demo.service.PokedexService;
  * ポケモン図鑑 Controller
  */
 @Controller
-@RequestMapping("pokedexlist")
-public class PokedexListController {
+@RequestMapping("pokedexRegistration")
+public class PokedexRegistrationController {
 
-	private String pokedexListpath = "/pokedex/pokedexList";
+	private String pokedexRegistrationpath = "/pokedex/pokedexRegistration";
 
 	/**
 	 * 共通 Service
@@ -44,7 +42,6 @@ public class PokedexListController {
 	 * @param model Model
 	 * @return ポケモン図鑑検索画面
 	 */
-	//@GetMapping("/init")
 	@RequestMapping(value = "/init", method = RequestMethod.POST)
 	public String initPokedex(Model model) {	
 		// 検索フォームのセット
@@ -58,17 +55,17 @@ public class PokedexListController {
 		model.addAttribute("pokedexSearchForm", pokedexSearchForm);
 
         // ポケモン図鑑検索画面の初期表示
-		return pokedexListpath;
+		return pokedexRegistrationpath;
 	}
 
 	/**
 	 * ポケモン図鑑の検索
 	 * 
 	 * @param PokedexSearchForm リクエストデータ
-	 * @param model Model
+	 * @param model                Model
 	 * @return ポケモン図鑑検索画面
 	 */
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String search(@ModelAttribute PokedexSearchForm pokedexSearchForm, Model model) {
 
 		// タイプのリストボックスの値セット
@@ -84,21 +81,8 @@ public class PokedexListController {
 		model.addAttribute("pokemonDataList", pokedexService.search(pokedexSearchForm));
 		
 		// ポケモン図鑑検索画面の初期表示
-		return pokedexListpath;
+		return pokedexRegistrationpath;
 		// return initPokedex(model);
-	}
-	
-	/**
-	 * ポケモン図鑑の検索
-	 * 
-	 * @param PokedexSearchForm リクエストデータ
-	 * @param model Model
-	 * @return ポケモン図鑑検索画面
-	 */
-	@PostMapping("/delete")
-	public String delete(@RequestParam int id, Model model) {
-	    //int count = diaryservice.delete(id);
-	    return "redirect:/diary";
 	}
 
 }

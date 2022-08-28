@@ -39,18 +39,14 @@
 	</nav>
 	<div class="bodymain">
 		<div class="searchConditions">
-			<h1>ポケモン情報登録</h1>
-			<form name="pokedexSearchForm" class="form-horizontal" method="post" th:action="@{/pokedexlist/search}"
-				th:object="${pokedexSearchRequest}">
+			<h1>ポケモン情報詳細</h1>
+			<form name="PokedexDetailForm" class="form-horizontal" method="post" th:action="@{/pokedexlist/edit}"
+				th:object="${PokedexDetailForm}">
 				<div class="form-group">
 				
 					<div class="form-group form-inline input-group-sm">
-						<label for="pokemonId_from" class="col-md-2 control-label">ポケモンID</label>
-						<input type="number" class="form-control col-md-2" id="pokemonId_from" name="pokemonId_from"
-							th:value="${pokemonId_from}">
-						<label class="col-md-1 control-label">～</label>
-						<input type="number" class="form-control col-md-2" id="pokemonId_to" name="pokemonId_to"
-							 th:value="${pokemonId_to}">
+						<label for="pokemonId" class="col-md-2 control-label">ポケモンID</label>
+						<input type="number" class="form-control col-md-2" id="pokemonId" name="pokemonId" th:value="${pokemonId}">
 					</div>
 					<div class="form-group form-inline input-group-sm">
 						<label for="pokemonJpName" class="col-md-2 control-label">ポケモン日本語名</label>
@@ -61,13 +57,11 @@
 							th:value="${pokemonEnName}">
 					</div>
 					<div class="form-group form-inline input-group-sm">
-						<label for="typeId" class="col-md-2 control-label">タイプ</label>
-<!--						<input type="text" class="form-control col-md-4" name="typeId" id="typeId" th:value="${typeId}">-->
-					<select class="form-control">
-<!--						<option value="0"></option>-->
-<!--						<option th:each="type : ${typeList}" th:value="${type.typeId}" th:text="${type.typeName}"></option>-->
-						<option th:each="type : ${typeList}" th:value="${typeId}" th:text="${type.typeName}" th:field="*{typeId}"></option>
-					</select>
+<!--						<label for="typeId" class="col-md-2 control-label">タイプ</label>-->
+<!--						<select class="form-control" id="typeList" th:field="*{typeId}">-->
+<!--							<option value=""></option>-->
+<!--							<option th:each="item : *{typeList}" th:value="${item.typeId}" th:text="${item.typeName}" />-->
+<!--						</select>-->
 					</div>
 					<div class="form-group form-inline input-group-sm">
 						<label for="height" class="col-md-2 control-label">高さ</label>
@@ -77,7 +71,7 @@
 					</div>
 					<div class="col-md-6"></div>
 					<div class="col-md-4" align="right">
-						<button type="button" class="btn btn-primary" onclick="buttonClick('/pokedexlist/search')">登録</button>
+						<button type="button" class="btn btn-primary" onclick="buttonClick('/pokedexlist/search')">修正</button>
 					</div>
 				</div>
 			</form>
