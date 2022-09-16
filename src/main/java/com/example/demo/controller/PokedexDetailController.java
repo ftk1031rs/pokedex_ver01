@@ -43,11 +43,11 @@ public class PokedexDetailController {
 	PokedexDetailService pokedexDetailService;
 
 	/**
-	 * ユーザー情報詳細画面を表示
+	 * ポケモン詳細画面を表示
 	 * 
-	 * @param id    表示するユーザーID
+	 * @param id    表示するポケモンID
 	 * @param model Model
-	 * @return ユーザー情報詳細画面
+	 * @return ポケモン詳細画面
 	 */
 	@GetMapping("/{id}")
 	public String dispDetail(@PathVariable Integer id, Model model) {
@@ -55,13 +55,13 @@ public class PokedexDetailController {
 		PokedexDetailForm pokedexDetailForm = pokedexDetailService.selectById(id).get(0);
 
 		// タイプのリストボックスの値セット
-		pokedexDetailForm.setTypeList(commonService.getTypeList());
+        model.addAttribute("typeList", commonService.getTypeList());
 		
-		// TODO その３：各項目のマッピングをする
+		// 各項目のマッピングをする
 		model.addAttribute("pokemonId", pokedexDetailForm.getPokemonId());
 		model.addAttribute("pokemonJpName", pokedexDetailForm.getPokemonJpName());
 		model.addAttribute("pokemonEnName", pokedexDetailForm.getPokemonEnName());
-		model.addAttribute("typeId", pokedexDetailForm.getTypeId());
+		model.addAttribute("selectedtypeId", pokedexDetailForm.getTypeId()); // タイプリストの初期値がうまくセットされない
 		model.addAttribute("height", pokedexDetailForm.getHeight());
 		model.addAttribute("weight", pokedexDetailForm.getWeight());
 		return pokedexDetailpath;

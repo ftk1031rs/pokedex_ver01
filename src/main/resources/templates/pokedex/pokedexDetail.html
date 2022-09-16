@@ -43,7 +43,6 @@
 			<form name="PokedexDetailForm" class="form-horizontal" method="post" th:action="@{/pokedexlist/edit}"
 				th:object="${PokedexDetailForm}">
 				<div class="form-group">
-				
 					<div class="form-group form-inline input-group-sm">
 						<label for="pokemonId" class="col-md-2 control-label">ポケモンID</label>
 						<input type="number" class="form-control col-md-2" id="pokemonId" name="pokemonId" th:value="${pokemonId}">
@@ -56,12 +55,23 @@
 						<input type="text" class="form-control col-md-4" name="pokemonEnName" id="pokemonEnName"
 							th:value="${pokemonEnName}">
 					</div>
+					<!--
 					<div class="form-group form-inline input-group-sm">
-<!--						<label for="typeId" class="col-md-2 control-label">タイプ</label>-->
-<!--						<select class="form-control" id="typeList" th:field="*{typeId}">-->
-<!--							<option value=""></option>-->
-<!--							<option th:each="item : *{typeList}" th:value="${item.typeId}" th:text="${item.typeName}" />-->
-<!--						</select>-->
+						<label for="typeId" class="col-md-2 control-label">タイプ</label>
+						<select class="form-control" id="typeList" th:field="*{typeId}">
+							<option value=""></option>
+							<option th:each="item : *{typeList}" th:value="${item.typeId}" th:text="${item.typeName}" />
+						</select>
+					</div>
+					-->
+					<div class="form-group form-inline input-group-sm">
+						<label for="typeList" class="col-md-2 control-label">タイプ</label>
+						<select class="form-control col-md-2" id="typeList" name="typeList">
+							<option value="0"></option>
+							<option th:each="item : ${typeList}" th:value="${item.typeId}" th:text="${item.typeName}"
+								th:selected="${item.typeId == selectedtypeId}">
+							</option>
+						</select>
 					</div>
 					<div class="form-group form-inline input-group-sm">
 						<label for="height" class="col-md-2 control-label">高さ</label>
