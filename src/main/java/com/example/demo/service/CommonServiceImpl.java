@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entity.Pk_region_mst;
 import com.example.demo.entity.Pk_type_mst;
 import com.example.demo.repository.CommonMapper;
 
@@ -29,5 +30,20 @@ public class CommonServiceImpl implements CommonService{
 		//タイプリスト取得
 		List<Pk_type_mst> typeList = commonMapper.selectTypeList();
 		return typeList;
-	}	
+	}
+	
+	/**
+	 * 地方リスト取得
+	 * 
+	 * @param 
+	 * @return 地方リスト
+	 */
+	@Override
+	public List<Pk_region_mst> getRegionList(){
+		//タイプリスト取得
+		List<Pk_region_mst> regionList = commonMapper.selectRegionList();
+		return regionList;
+	}
+	
+	
 }

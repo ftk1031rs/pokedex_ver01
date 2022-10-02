@@ -19,4 +19,12 @@ public interface PokedexDetailService {
 	 */
 	List<PokedexDetailForm> selectById(Integer id);
 
+	/**
+	 * ポケモンデータ更新
+	 * 
+	 * @param PokedexDetailForm pokedexDetailForm
+	 * @return 
+	 */
+	void pokemonDataUpdate(PokedexDetailForm pokedexDetailForm);
+
 }

@@ -1,10 +1,14 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,8 +30,6 @@ import com.example.demo.service.PokedexService;
 @RequestMapping("pokedexdetail")
 public class PokedexDetailController {
 
-	
-	// TODO ここのパスも修正
 	private String pokedexDetailpath = "/pokedex/pokedexDetail";
 
 	/**
@@ -37,7 +39,7 @@ public class PokedexDetailController {
 	CommonService commonService;
 
 	/**
-	 * ポケモン図鑑検索 Service
+	 * ポケモン図鑑更新 Service
 	 */
 	@Autowired
 	PokedexDetailService pokedexDetailService;
@@ -52,19 +54,60 @@ public class PokedexDetailController {
 	@GetMapping("/{id}")
 	public String dispDetail(@PathVariable Integer id, Model model) {
 		// ポケモンIDを基にデータを取得
-		PokedexDetailForm pokedexDetailForm = pokedexDetailService.selectById(id).get(0);
+		// PokedexDetailForm pokedexDetailForm = pokedexDetailService.selectById(id).get(0);
+		PokedexDetailForm pokedexDetailForm = new PokedexDetailForm();
+		pokedexDetailForm = pokedexDetailService.selectById(id).get(0);
+		
 
 		// タイプのリストボックスの値セット
-        model.addAttribute("typeList", commonService.getTypeList());
+        // model.addAttribute("typeList", commonService.getTypeList());
+		List<Pk_type_mst> typeList = commonService.getTypeList();
+		pokedexDetailForm.setTypeList(typeList);
 		
 		// 各項目のマッピングをする
-		model.addAttribute("pokemonId", pokedexDetailForm.getPokemonId());
-		model.addAttribute("pokemonJpName", pokedexDetailForm.getPokemonJpName());
-		model.addAttribute("pokemonEnName", pokedexDetailForm.getPokemonEnName());
-		model.addAttribute("selectedtypeId", pokedexDetailForm.getTypeId()); // タイプリストの初期値がうまくセットされない
-		model.addAttribute("height", pokedexDetailForm.getHeight());
-		model.addAttribute("weight", pokedexDetailForm.getWeight());
+		// model.addAttribute("pokemonId", pokedexDetailForm.getPokemonId());
+		// model.addAttribute("pokemonJpName", pokedexDetailForm.getPokemonJpName());
+		// model.addAttribute("pokemonEnName", pokedexDetailForm.getPokemonEnName());
+		// model.addAttribute("selectedtypeId", pokedexDetailForm.getTypeId()); // タイプリストの初期値がうまくセットされない
+		// model.addAttribute("height", pokedexDetailForm.getHeight());
+		// model.addAttribute("weight", pokedexDetailForm.getWeight());
+		
+		// 詳細フォームのマッピング
+		model.addAttribute("pokedexDetailForm", pokedexDetailForm);
 		return pokedexDetailpath;
 	}
-
+	
+	/**
+	 * ポケモン図鑑の更新
+	 * 
+	 * @param PokedexSearchForm リクエストデータ
+	 * @param model Model
+	 * @return ポケモン図鑑更新画面
+	 */
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+//  public String update(@Validated @ModelAttribute PokedexDetailForm pokedexDetailForm, BindingResult result , Model model) {
+	public String update(@ModelAttribute PokedexDetailForm pokedexDetailForm, Model model) {
+//		if (result.hasErrors()) {
+//			List<String> errorList = new ArrayList<String>();
+//			for (ObjectError error : result.getAllErrors()) {
+//				errorList.add(error.getDefaultMessage());
+//			}
+//			model.addAttribute("validationError", errorList);
+//			return pokedexDetailpath;
+//		}
+		
+//		// ポケモンIDを基に更新対象のデータを検索　※あとで共通処理（排他制御も忘れずに）にする
+//		if(pokedexDetailService.selectById(pokedexDetailForm.getPokemonId()).get(0) != null){
+//			// 更新対象のデータが存在する場合更新処理
+//			pokedexDetailService.pokemonDataUpdate(pokedexDetailForm);	
+//		}else {
+//			model.addAttribute("validationError", "更新対象のデータがないよ");
+//		}
+		
+		// 更新処理
+		pokedexDetailService.pokemonDataUpdate(pokedexDetailForm);
+		
+		// return String.format("redirect:/user/%d", userUpdateRequest.getId());
+		return pokedexDetailpath;
+	}
 }

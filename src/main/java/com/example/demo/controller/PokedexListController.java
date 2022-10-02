@@ -7,14 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.dto.PokedexDetailForm;
 import com.example.demo.dto.PokedexSearchForm;
 import com.example.demo.entity.Pk_type_mst;
 import com.example.demo.service.CommonService;
+import com.example.demo.service.PokedexDetailService;
 import com.example.demo.service.PokedexService;
 
 /**
@@ -37,6 +40,12 @@ public class PokedexListController {
 	 */
 	@Autowired
 	PokedexService pokedexService;
+	
+	/**
+	 * ポケモン図鑑更新 Service
+	 */
+	@Autowired
+	PokedexDetailService pokedexDetailService;
 
 	/**
 	 * ポケモン図鑑検索画面を表示
@@ -44,7 +53,6 @@ public class PokedexListController {
 	 * @param model Model
 	 * @return ポケモン図鑑検索画面
 	 */
-	//@GetMapping("/init")
 	@RequestMapping(value = "/init", method = RequestMethod.POST)
 	public String initPokedex(Model model) {	
 		// 検索フォームのセット
@@ -87,6 +95,48 @@ public class PokedexListController {
 		return pokedexListpath;
 		// return initPokedex(model);
 	}
+	
+	/**
+	 * ポケモン図鑑の詳細
+	 * 
+	 * @param PokedexSearchForm リクエストデータ
+	 * @param model Model
+	 * @return ポケモン図鑑検索画面
+	 */
+	@GetMapping("/{id}")
+	public String dispDetail(@PathVariable Integer id, Model model) {
+		// フォームのセット
+		PokedexDetailForm pokedexDetailForm = new PokedexDetailForm();
+		pokedexDetailForm = pokedexDetailService.selectById(id).get(0);
+		
+		// タイプのリストボックスの値セット
+		List<Pk_type_mst> typeList = commonService.getTypeList();
+		pokedexDetailForm.setTypeList(typeList);
+		
+		// 検索フォームのマッピング
+		model.addAttribute("pokedexDetailForm", pokedexDetailForm);
+	    return "/pokedex/pokedexDetail";
+	}
+	
+	/**
+	 * ポケモン図鑑の検索
+	 * 
+	 * @param PokedexSearchForm リクエストデータ
+	 * @param model Model
+	 * @return ポケモン図鑑検索画面
+	 */
+	@PostMapping("/update")
+	public String update(@ModelAttribute PokedexDetailForm pokedexDetailForm, Model model) {
+		System.out.println(pokedexDetailForm.getTypeId());
+		// タイプのリストボックスの値セット
+		List<Pk_type_mst> typeList = commonService.getTypeList();
+		pokedexDetailForm.setTypeList(typeList);
+		
+		model.addAttribute("typeId", pokedexDetailForm.getTypeId());
+	    
+		return "/pokedex/pokedexDetail";
+	}
+	
 	
 	/**
 	 * ポケモン図鑑の検索

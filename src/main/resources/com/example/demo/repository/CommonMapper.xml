@@ -13,4 +13,15 @@
 		 WHERE DELETE_FLAG = 0
 		 ORDER BY TYPE_ID
 	</select>
+	<resultMap id="regionMap"
+		type="com.example.demo.entity.Pk_region_mst">
+		<result column="REGION_ID" jdbcType="VARCHAR" property="region_id" />
+		<result column="REGION_NAME_JP" jdbcType="VARCHAR" property="region_name_jp" />
+	</resultMap>
+    <select id="selectRegionList" resultMap="regionMap">
+		SELECT REGION_ID
+    		 , REGION_NAME_JP
+		  FROM PK_REGION_MST
+		 ORDER BY REGION_ID
+	</select>
 </mapper>

@@ -99,4 +99,16 @@
 		 ORDER BY pkdex.POKEMON_ID ASC, pkdex.POKEMON_ID_BRANCH ASC
 	</select>
 
+	<update id="update">
+        UPDATE PK_POKEDEX_MST
+           SET POKEMON_JP_NAME = #{pokemonJpName}
+             , POKEMON_EN_NAME = #{pokemonEnName}
+             , TYPE_ID = #{typeId}
+             , HEIGHT = #{height}
+             , WEIGHT = #{weight}
+             , UPDATE_DATE = CURRENT_TIMESTAMP
+             , UPDATE_COUNT = UPDATE_COUNT + 1
+         WHERE POKEMON_ID = #{pokemonId}
+    </update>
+
 </mapper>

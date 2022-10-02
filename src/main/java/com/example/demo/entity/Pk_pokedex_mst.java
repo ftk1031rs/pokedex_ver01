@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,11 +17,11 @@ public class Pk_pokedex_mst extends WhoColumns{
 	@Id
 	@Column(name="POKEMON_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int pokemonId;
+	private Integer pokemonId;
 	
 	/** ポケモンID枝番 */
 	@Column(name="POKEMON_ID_BRANCH")
-    private int pokemonIdBranch;
+    private Integer pokemonIdBranch;
 	
 	/** ポケモン日本語名 */
 	@Column(name="POKEMON_JP_NAME")
@@ -31,30 +33,31 @@ public class Pk_pokedex_mst extends WhoColumns{
 	
     /** タイプID */
     @Column(name="TYPE_ID")
-    private int typeId;
+    private Integer typeId;
 
     /** 高さ */
     @Column(name="HEIGHT")
-    private double height;
+    private BigDecimal height;
     
     /** 重さ */
     @Column(name="WEIGHT")
-    private double weight;
+    private BigDecimal weight;
 
     /** Getter Setter */
-	public int getPokemonId() {
+
+	public Integer getPokemonId() {
 		return pokemonId;
 	}
 
-	public void setPokemonId(int pokemonId) {
+	public void setPokemonId(Integer pokemonId) {
 		this.pokemonId = pokemonId;
 	}
 
-	public int getPokemonIdBranch() {
+	public Integer getPokemonIdBranch() {
 		return pokemonIdBranch;
 	}
 
-	public void setPokemonIdBranch(int pokemonIdBranch) {
+	public void setPokemonIdBranch(Integer pokemonIdBranch) {
 		this.pokemonIdBranch = pokemonIdBranch;
 	}
 
@@ -74,27 +77,27 @@ public class Pk_pokedex_mst extends WhoColumns{
 		this.pokemonEnName = pokemonEnName;
 	}
 
-	public int getTypeId() {
+	public Integer getTypeId() {
 		return typeId;
 	}
 
-	public void setTypeId(int typeId) {
+	public void setTypeId(Integer typeId) {
 		this.typeId = typeId;
 	}
 
-	public double getHeight() {
+	public BigDecimal getHeight() {
 		return height;
 	}
 
-	public void setHeight(double height) {
+	public void setHeight(BigDecimal height) {
 		this.height = height;
 	}
 
-	public double getWeight() {
+	public BigDecimal getWeight() {
 		return weight;
 	}
 
-	public void setWeight(double weight) {
+	public void setWeight(BigDecimal weight) {
 		this.weight = weight;
 	}
 

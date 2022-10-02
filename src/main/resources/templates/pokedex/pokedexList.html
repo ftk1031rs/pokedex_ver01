@@ -101,7 +101,7 @@
 					<td th:text="${pokemonData.typeName}"></td>
 					<td th:text="${pokemonData.height}"></td>
 					<td th:text="${pokemonData.weight}"></td>
-					<td><a class="btn btn-primary" th:href="@{/pokedexdetail/{pokemonId}(pokemonId=${pokemonData.pokemonId})}">詳細</a></td>
+					<td><a class="btn btn-primary" th:href="@{/pokedexlist/{pokemonId}(pokemonId=${pokemonData.pokemonId})}">詳細</a></td>
 					<td>
 						<button type="button" class="btn btn-danger mb-12" data-toggle="modal" data-target="#deleteModal"
 							data-backdrop="false" 　th:data-bs-target="'#pokemonId' + ${pokemonData.pokemonId}">削除</button>
